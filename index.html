@@ -12,23 +12,23 @@
 		<h1>To Do app</h1>
 	</header>
 	<div class="container card">
-		<section id="form" >
-			<form action="">
+		<section id="form-section" >
+			<form action="" id="form">
 				<input type="text" id="task">
 				<input type="submit" id="submit">
 			</form>
 		</section>
-		<section id="tasks">
-			<ul>
-				<li class="flex card">
+		<section id="tasks-section">
+			<ul id="tasks">
+				<li class="flex card item">
 					<p>
 						complete to do app in js
 					</p>
-					<div class="padding">
-						<button id="x" class="button">
+					<div>
+						<button class="x button">
 							X
 						</button>
-						<button id="r" class="button">
+						<button class="r button">
 							R
 						</button>
 					</div>
@@ -36,5 +36,7 @@
 			</ul>
 		</section>
 	</div>
+
+	<script src="js/main.js"></script>
 </body>
 </html>
