@@ -36,14 +36,26 @@ form.onsubmit = () => {
 		const buttonCancel = document.createElement('button');
 		const buttonChange = document.createElement('button');
 
-		buttonCancel.className = "button"
-		buttonChange.className = "button"
+		buttonCancel.className = "button";
+		buttonChange.className = "button";
 
 		buttonCancel.innerHTML = 'Cancel';
-		buttonChange.innerHTML = 'Change'
+		buttonChange.innerHTML = 'Change';
 
-		buttonChange.onclick = () => console.log('change')  
-		buttonCancel.onclick = () => console.log('cancel')
+		buttonChange.onclick = () => {
+			const p = document.createElement('p');
+			p.append(input.value);
+			replaceForm.replaceWith(p);
+			buttonCancel.replaceWith(buttonR);
+			buttonChange.replaceWith(buttonX);
+		}
+
+		buttonCancel.onclick = () => {
+			console.log('cancel');
+			replaceForm.replaceWith(previousElement);
+			buttonCancel.replaceWith(buttonR);
+			buttonChange.replaceWith(buttonX);
+		}
 
 		// buttonChange.onclick = () => {
 		// 	console.log('change')
