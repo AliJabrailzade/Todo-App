@@ -4,6 +4,7 @@ const task = document.querySelector('#task');
 const item = document.querySelector('.item');
 const deleteAll = document.querySelector('.delete-all');
 
+
 let noTaskLi = document.createElement('li');
 
 form.onsubmit = () => {
@@ -22,11 +23,55 @@ form.onsubmit = () => {
 	buttonR.innerHTML = "R";
 
 	buttonX.onclick = () => {
-		buttonX.parentElement.parentElement.remove()
+		buttonX.parentElement.parentElement.remove();
 	}
 
 	buttonR.onclick = () => {
-		console.log('R clicked');
+		console.log(buttonR.parentElement.previousElementSibling);
+
+		const previousElement = buttonR.parentElement.previousElementSibling;
+		console.log(buttonR.previousElementSibling)
+		const replaceForm = document.createElement('form');
+		const input = document.createElement('input');
+		const buttonCancel = document.createElement('button');
+		const buttonChange = document.createElement('button');
+
+		buttonCancel.className = "button"
+		buttonChange.className = "button"
+
+		buttonCancel.innerHTML = 'Cancel';
+		buttonChange.innerHTML = 'Change'
+
+		buttonChange.onclick = () => console.log('change')  
+		buttonCancel.onclick = () => console.log('cancel')
+
+		// buttonChange.onclick = () => {
+		// 	console.log('change')
+		// }
+
+		// buttonCancel.onclick = () => console.log('cancel')
+
+
+		// buttonR.previousElementSibling.replaceWith(buttonChange);
+
+
+		input.setAttribute('type', 'text');
+
+		replaceForm.append(input);
+		buttonR.parentElement.previousElementSibling.replaceWith(replaceForm);
+
+		buttonR.previousElementSibling.replaceWith(buttonChange);
+		buttonR.replaceWith(buttonCancel);
+
+		replaceForm.onsubmit = () => {
+
+			return false;
+		}
+
+		// console.log(buttonR.parentElement.previousElementSibling);
+		// console.log(previousElement);
+
+
 	}
 
 	p.append(task.value);
