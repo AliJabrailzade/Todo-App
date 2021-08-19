@@ -2,10 +2,21 @@ const tasks = document.querySelector('#tasks');
 const form = document.querySelector('#form');
 const task = document.querySelector('#task');
 const item = document.querySelector('.item');
+const submit = document.querySelector('#submit');
 const deleteAll = document.querySelector('.delete-all');
 
 
 let noTaskLi = document.createElement('li');
+
+submit.disabled = true;
+
+task.onkeyup = () => {
+	if (task.value.length > 0) {
+		submit.disabled = false;
+	} else {
+		submit.disabled = true;
+	}
+}
 
 form.onsubmit = () => {
 
@@ -28,9 +39,9 @@ form.onsubmit = () => {
 
 	buttonR.onclick = () => {
 		console.log(buttonR.parentElement.previousElementSibling);
+		console.log(buttonR.previousElementSibling)
 
 		const previousElement = buttonR.parentElement.previousElementSibling;
-		console.log(buttonR.previousElementSibling)
 		const replaceForm = document.createElement('form');
 		const input = document.createElement('input');
 		const buttonCancel = document.createElement('button');
@@ -96,6 +107,7 @@ form.onsubmit = () => {
 	tasks.append(li);
 
 	deleteAll.onclick = deleteAllTasks;
+	submit.disabled = true;
 	task.value = "";
 	return false;
 
