@@ -2,6 +2,7 @@ const tasks = document.querySelector('#tasks');
 const form = document.querySelector('#form');
 const task = document.querySelector('#task');
 const item = document.querySelector('.item');
+const deleteAll = document.querySelector('.delete-all');
 
 let noTaskLi = document.createElement('li');
 
@@ -37,16 +38,17 @@ form.onsubmit = () => {
 
 	tasks.append(li);
 
+	deleteAll.onclick = deleteAllTasks;
 	task.value = "";
 	return false;
 
 } 
 
-setInterval(noTask, 1000);
+setInterval(noTask, 100);
 
 function noTask() {
-	console.log('okay')
-	console.log('length: ' + tasks.children.length)
+	// console.log('okay')
+	// console.log('length: ' + tasks.children.length)
 	if (tasks.children.length === 0) {
 		noTaskLi.innerHTML = 'No Task';
 		tasks.append(noTaskLi);
@@ -55,4 +57,14 @@ function noTask() {
 		noTaskLi.remove()
 	}
 	
+}
+
+
+function deleteAllTasks() {
+	// console.log(deleteAll);
+	console.log('length: ' + tasks.children.length);
+	for (let task = tasks.children.length - 1; task > -1; task--) {
+		console.log(task);
+		tasks.children[task].remove();
+	}
 }
