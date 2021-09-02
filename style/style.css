@@ -45,6 +45,7 @@ li {
 .button {
 	font-size: 0.5rem;
 	padding: 5px;
+	margin: 0 2px;
 	background-color: black;
 	color: white;
 }
@@ -52,10 +53,15 @@ li {
 .card {
 	border: 1px solid black;
 	margin: 5px 0;
-	padding: 5px;
+	padding: 3px;
 }
 
 .container {
 	margin: auto;
-	max-width: 80%;
+	max-width: 90%;
 }
+
+.margin-top {
+	margin-top: 12px;
+}
+

@@ -11,32 +11,54 @@
 	<header id="header">
 		<h1>To Do app</h1>
 	</header>
-	<div class="container card">
-		<section id="form-section" >
-			<form action="" id="form">
-				<input type="text" id="task">
-				<input type="submit" id="submit">
-			</form>
-		</section>
-		<section id="tasks-section">
-			<h2>Tasks</h2>
-			<ul id="tasks">
-				<!-- <li class="flex card item">
-					<p>
-						complete to do app in js
-					</p>
-					<div>
-						<button class="x button">
-							X
-						</button>
-						<button class="r button">
-							R
-						</button>
-					</div>
-				</li> -->
-			</ul>
-			<button class="button delete-all">Delete All</button>
-		</section>
+	<div class="container">
+		<div class="card">
+			<section id="form-section" >
+				<form action="" id="form">
+					<input type="text" id="task">
+					<input type="submit" id="submit">
+				</form>
+			</section>
+			<section id="tasks-section">
+				<h2>Tasks</h2>
+				<ul id="tasks">
+					<!-- <li class="flex card item choose-me">
+						<s>
+							complete to do app in js
+						</s>
+						<div>
+							<button class="r button">
+								unDone
+							</button>
+							<button class="r button">
+								Arcive
+							</button>
+						</div>
+					</li> -->
+				</ul>
+				<button class="button delete-all">Delete All</button>
+			</section>
+		</div>
+		<div class="card margin-top">
+			<section class="archive-section">
+				<h2>Archive</h2>
+				<ul id="archive">
+					<li class="flex card item choose-me">
+						<p>
+							complete to do app in js
+						</p>
+						<div>
+							<button class="r button">
+								done
+							</button>
+							<button class="r button">
+								unArchive
+							</button>
+						</div>
+					</li>
+				</ul>
+			</section>
+		</div>
 	</div>
 
 	<script src="js/main.js"></script>

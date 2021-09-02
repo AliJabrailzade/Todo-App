@@ -4,6 +4,7 @@ const task = document.querySelector('#task');
 const item = document.querySelector('.item');
 const submit = document.querySelector('#submit');
 const deleteAll = document.querySelector('.delete-all');
+const archive = document.querySelector('#archive');
 
 
 let noTaskLi = document.createElement('li');
@@ -23,23 +24,56 @@ form.onsubmit = () => {
 	const li = document.createElement('li');
 	const p = document.createElement('p');
 	const div = document.createElement('div');
+	const buttonD = document.createElement('button');
+  const unDone = document.createElement('button');
+
 	const buttonX = document.createElement('button');
 	const buttonR = document.createElement('button');
+	const buttonA = document.createElement('button');
 
 	li.className = "flex card item";
+
+	buttonD.className = 'd button';
+  unDone.className = "undone button";
 	buttonX.className = 'x button';
 	buttonR.className = 'r button';
+	buttonA.className = 'a button';
 
-	buttonX.innerHTML = "X";
-	buttonR.innerHTML = "R";
+	buttonD.innerHTML = " D ";
+  unDone.innerHTML = "unDone";
+	buttonX.innerHTML = " X ";
+	buttonR.innerHTML = " R ";
+	buttonA.innerHTML = " A ";
+
+	buttonD.onclick = () => {
+		const previousElement = buttonR.parentElement.previousElementSibling.textContent;
+		const s = document.createElement('s');
+		const pTag = document.createElement('p');
+    // unDone.style.display = "inline";
+
+    pTag.innerHTML = previousElement;
+
+		unDone.onclick = () => {
+			unDone.parentElement.previousElementSibling.replaceWith(pTag);
+			unDone.replaceWith(buttonD);
+		}
+
+
+		s.append(previousElement);
+		buttonD.parentElement.previousElementSibling.replaceWith(s);
+		buttonD.replaceWith(unDone);
+		
+	}
 
 	buttonX.onclick = () => {
 		buttonX.parentElement.parentElement.remove();
 	}
 
 	buttonR.onclick = () => {
-		console.log(buttonR.parentElement.previousElementSibling);
-		console.log(buttonR.previousElementSibling)
+		buttonD.style.display = "none";
+		buttonA.style.display = "none";
+    unDone.style.display = "none";
+
 
 		const previousElement = buttonR.parentElement.previousElementSibling;
 		const replaceForm = document.createElement('form');
@@ -59,26 +93,30 @@ form.onsubmit = () => {
 			replaceForm.replaceWith(p);
 			buttonCancel.replaceWith(buttonR);
 			buttonChange.replaceWith(buttonX);
+
+			// make these buttons visable again
+      buttonD.style.display = "inline";
+			buttonA.style.display = "inline";
+      unDone.style.display = "inline";
+			unDone.replaceWith(buttonD);
+      console.log(unDone)
+      // unDone.remove()
+
 		}
 
 		buttonCancel.onclick = () => {
-			console.log('cancel');
 			replaceForm.replaceWith(previousElement);
 			buttonCancel.replaceWith(buttonR);
 			buttonChange.replaceWith(buttonX);
+
+			// make these buttons visable again
+			buttonD.style.display = "inline";
+			buttonA.style.display = "inline";
+      unDone.style.display = "inline";
 		}
 
-		// buttonChange.onclick = () => {
-		// 	console.log('change')
-		// }
-
-		// buttonCancel.onclick = () => console.log('cancel')
-
-
-		// buttonR.previousElementSibling.replaceWith(buttonChange);
-
-
 		input.setAttribute('type', 'text');
+
 
 		replaceForm.append(input);
 		buttonR.parentElement.previousElementSibling.replaceWith(replaceForm);
@@ -91,15 +129,20 @@ form.onsubmit = () => {
 			return false;
 		}
 
-		// console.log(buttonR.parentElement.previousElementSibling);
-		// console.log(previousElement);
 
 
 	}
 
+	buttonA.onclick = () => {
+		archive.append(buttonA.parentElement.parentElement);
+
+	}
+
 	p.append(task.value);
+	div.append(buttonD);
 	div.append(buttonX);
 	div.append(buttonR);
+	div.append(buttonA);
 	
 	li.append(p);
 	li.append(div);
@@ -116,13 +159,10 @@ form.onsubmit = () => {
 setInterval(noTask, 100);
 
 function noTask() {
-	// console.log('okay')
-	// console.log('length: ' + tasks.children.length)
 	if (tasks.children.length === 0) {
 		noTaskLi.innerHTML = 'No Task';
 		tasks.append(noTaskLi);
 	} else if (tasks.children.length > 1) {
-		// noTaskLi.style.display = 'none';
 		noTaskLi.remove()
 	}
 	
@@ -130,10 +170,7 @@ function noTask() {
 
 
 function deleteAllTasks() {
-	// console.log(deleteAll);
-	console.log('length: ' + tasks.children.length);
 	for (let task = tasks.children.length - 1; task > -1; task--) {
-		console.log(task);
 		tasks.children[task].remove();
 	}
 }
