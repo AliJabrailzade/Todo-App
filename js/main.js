@@ -22,7 +22,7 @@ task.onkeyup = () => {
 
 form.onsubmit = () => {
 
-  const allChanges = [];
+  // const allChanges = [];
 	const li = document.createElement('li');
 	const p = document.createElement('p');
 	const div = document.createElement('div');
@@ -101,7 +101,7 @@ form.onsubmit = () => {
       const addOption = document.createElement('option');
 			const p = document.createElement('p');
 			p.append(input.value);
-      allChanges.push(input.value);
+      // allChanges.push(input.value);
 			replaceForm.replaceWith(p);
 			buttonCancel.replaceWith(buttonR);
 			buttonChange.replaceWith(buttonX);
@@ -178,8 +178,8 @@ form.onsubmit = () => {
 	li.append(div);
 
 	tasks.append(li);
-  allChanges.push(p.textContent);
-  console.log(allChanges);
+  // allChanges.push(p.textContent);
+  // console.log(allChanges);
   opt.value = task.value;
   opt.innerHTML = task.value;
   history.append(opt);
