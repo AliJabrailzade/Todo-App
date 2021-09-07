@@ -8,6 +8,7 @@ const archive = document.querySelector('#archive');
 
 
 let noTaskLi = document.createElement('li');
+let noArchiveLi = document.createElement('li');
 
 submit.disabled = true;
 
@@ -21,6 +22,7 @@ task.onkeyup = () => {
 
 form.onsubmit = () => {
 
+  const allChanges = [];
 	const li = document.createElement('li');
 	const p = document.createElement('p');
 	const div = document.createElement('div');
@@ -30,6 +32,8 @@ form.onsubmit = () => {
 	const buttonX = document.createElement('button');
 	const buttonR = document.createElement('button');
 	const buttonA = document.createElement('button');
+  const history = document.createElement('select');
+  const opt = document.createElement('option');
 
 	li.className = "flex card item";
 
@@ -38,6 +42,7 @@ form.onsubmit = () => {
 	buttonX.className = 'x button';
 	buttonR.className = 'r button';
 	buttonA.className = 'a button';
+  history.className = 'h button';
 
 	buttonD.innerHTML = " D ";
   unDone.innerHTML = "unDone";
@@ -70,10 +75,11 @@ form.onsubmit = () => {
 	}
 
 	buttonR.onclick = () => {
+
 		buttonD.style.display = "none";
 		buttonA.style.display = "none";
     unDone.style.display = "none";
-
+    history.style.display = "none";
 
 		const previousElement = buttonR.parentElement.previousElementSibling;
 		const replaceForm = document.createElement('form');
@@ -81,25 +87,37 @@ form.onsubmit = () => {
 		const buttonCancel = document.createElement('button');
 		const buttonChange = document.createElement('button');
 
+    // const label = document.createElement('label');
+    // label.id
+
 		buttonCancel.className = "button";
 		buttonChange.className = "button";
 
 		buttonCancel.innerHTML = 'Cancel';
 		buttonChange.innerHTML = 'Change';
 
+
 		buttonChange.onclick = () => {
+      const addOption = document.createElement('option');
 			const p = document.createElement('p');
 			p.append(input.value);
+      allChanges.push(input.value);
 			replaceForm.replaceWith(p);
 			buttonCancel.replaceWith(buttonR);
 			buttonChange.replaceWith(buttonX);
+
+      console.log(input.value);
+      addOption.value = input.value;
+      addOption.innerHTML = input.value;
+      console.log(addOption);
+      history.append(addOption);
 
 			// make these buttons visable again
       buttonD.style.display = "inline";
 			buttonA.style.display = "inline";
       unDone.style.display = "inline";
 			unDone.replaceWith(buttonD);
-      console.log(unDone)
+      history.style.display = "inline";
       // unDone.remove()
 
 		}
@@ -113,6 +131,7 @@ form.onsubmit = () => {
 			buttonD.style.display = "inline";
 			buttonA.style.display = "inline";
       unDone.style.display = "inline";
+      history.style.display = "inline";
 		}
 
 		input.setAttribute('type', 'text');
@@ -129,29 +148,46 @@ form.onsubmit = () => {
 			return false;
 		}
 
-
-
 	}
 
 	buttonA.onclick = () => {
 		archive.append(buttonA.parentElement.parentElement);
+    const unArchive = document.createElement('button');
+    unArchive.className = 'un-archive button'
+    unArchive.innerHTML = 'UnArchive';
+    buttonA.replaceWith(unArchive);
 
+    unArchive.onclick = () => {
+      tasks.append(unArchive.parentElement.parentElement);
+      unArchive.replaceWith(buttonA)
+    }
 	}
+
+  history.onchange = () => {
+    history.parentElement.previousElementSibling.innerHTML = history.value;
+  }
 
 	p.append(task.value);
 	div.append(buttonD);
 	div.append(buttonX);
 	div.append(buttonR);
 	div.append(buttonA);
+	div.append(history);
 	
 	li.append(p);
 	li.append(div);
 
 	tasks.append(li);
+  allChanges.push(p.textContent);
+  console.log(allChanges);
+  opt.value = task.value;
+  opt.innerHTML = task.value;
+  history.append(opt);
 
 	deleteAll.onclick = deleteAllTasks;
 	submit.disabled = true;
 	task.value = "";
+
 	return false;
 
 } 
@@ -166,6 +202,17 @@ function noTask() {
 		noTaskLi.remove()
 	}
 	
+}
+
+setInterval(noArchive, 100);
+
+function noArchive() {
+	if (archive.children.length === 0) {
+		noArchiveLi.innerHTML = 'No Archive';
+		archive.append(noArchiveLi);
+	} else if (archive.children.length > 1) {
+		noArchiveLi.remove();
+	}
 }
 
 

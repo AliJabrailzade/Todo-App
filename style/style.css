@@ -11,6 +11,19 @@ p {
 	font-size: 1.1rem;
 }
 
+label {
+	font-size: .9rem;
+}
+
+select {
+	width: 30px;
+}
+
+option {
+	font-size: 0.9rem;
+	margin: 2px 0;
+}
+
 li {
 	list-style-type: none;
 	margin: 5px;
