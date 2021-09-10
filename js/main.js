@@ -87,6 +87,7 @@ form.onsubmit = () => {
 		const buttonCancel = document.createElement('button');
 		const buttonChange = document.createElement('button');
 
+    input.id = "input";
     // const label = document.createElement('label');
     // label.id
 
@@ -197,6 +198,7 @@ setInterval(noTask, 100);
 function noTask() {
 	if (tasks.children.length === 0) {
 		noTaskLi.innerHTML = 'No Task';
+    noTaskLi.className = 'no-task-li';
 		tasks.append(noTaskLi);
 	} else if (tasks.children.length > 1) {
 		noTaskLi.remove()
@@ -209,6 +211,7 @@ setInterval(noArchive, 100);
 function noArchive() {
 	if (archive.children.length === 0) {
 		noArchiveLi.innerHTML = 'No Archive';
+    noArchiveLi.className = 'no-archive-li';
 		archive.append(noArchiveLi);
 	} else if (archive.children.length > 1) {
 		noArchiveLi.remove();

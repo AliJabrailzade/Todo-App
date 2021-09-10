@@ -8,7 +8,7 @@ body {
 }
 
 p {
-	font-size: 1.1rem;
+	font-size: 1.7rem;
 }
 
 label {
@@ -29,12 +29,21 @@ li {
 	margin: 5px;
 }
 
+h2 {
+	font-size: 2.2rem;
+}
+
 #header {
 	background-color: black;
+	font-size: 2rem;
 	color: white;
 	text-align: center;
 	padding: 20px;
 	margin-bottom: 15px;
+}
+
+#task, #submit {
+	font-size: 1.5rem;
 }
 
 #task {
@@ -48,6 +57,14 @@ li {
 	color: white;
 }
 
+#input {
+	font-size: 1.2rem;
+}
+
+.no-task-li, .no-archive-li {
+	font-size: 1.5rem;
+}
+
 .flex {
 	display: flex;
 	justify-content: space-between;
@@ -56,9 +73,9 @@ li {
 }
 
 .button {
-	font-size: 0.5rem;
+	font-size: 1.1rem;
 	padding: 5px;
-	margin: 0 2px;
+	margin: 0 4px;
 	background-color: black;
 	color: white;
 }
