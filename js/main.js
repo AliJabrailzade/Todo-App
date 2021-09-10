@@ -55,6 +55,7 @@ form.onsubmit = () => {
 		const s = document.createElement('s');
 		const pTag = document.createElement('p');
     // unDone.style.display = "inline";
+    s.className = "s";
 
     pTag.innerHTML = previousElement;
 
