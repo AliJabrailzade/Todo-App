@@ -20,9 +20,11 @@ task.onkeyup = () => {
 	}
 }
 
+// DC
+// okay
 form.onsubmit = () => {
+  console.log('okay')
 
-  // const allChanges = [];
 	const li = document.createElement('li');
 	const p = document.createElement('p');
 	const div = document.createElement('div');
@@ -51,25 +53,9 @@ form.onsubmit = () => {
 	buttonA.innerHTML = " A ";
 
 	buttonD.onclick = () => {
-		const previousElement = buttonR.parentElement.previousElementSibling.textContent;
-		const s = document.createElement('s');
-		const pTag = document.createElement('p');
-    // unDone.style.display = "inline";
-    s.className = "s";
-
-    pTag.innerHTML = previousElement;
-
-		unDone.onclick = () => {
-			unDone.parentElement.previousElementSibling.replaceWith(pTag);
-			unDone.replaceWith(buttonD);
-		}
-
-
-		s.append(previousElement);
-		buttonD.parentElement.previousElementSibling.replaceWith(s);
-		buttonD.replaceWith(unDone);
-		
+		buttonDone(buttonR, unDone, buttonD)
 	}
+
 
 	buttonX.onclick = () => {
 		buttonX.parentElement.parentElement.remove();
@@ -77,7 +63,7 @@ form.onsubmit = () => {
 
 	buttonR.onclick = () => {
 
-		buttonD.style.display = "none";
+    buttonD.style.display = "none";
 		buttonA.style.display = "none";
     unDone.style.display = "none";
     history.style.display = "none";
@@ -153,19 +139,12 @@ form.onsubmit = () => {
 	}
 
 	buttonA.onclick = () => {
-		archive.append(buttonA.parentElement.parentElement);
-    const unArchive = document.createElement('button');
-    unArchive.className = 'un-archive button'
-    unArchive.innerHTML = 'UnArchive';
-    buttonA.replaceWith(unArchive);
-
-    unArchive.onclick = () => {
-      tasks.append(unArchive.parentElement.parentElement);
-      unArchive.replaceWith(buttonA)
-    }
+		buttonArchive(buttonA)
 	}
 
   history.onchange = () => {
+		console.log(history.parentElement.previousElementSibling);
+		console.log(history.value);
     history.parentElement.previousElementSibling.innerHTML = history.value;
   }
 
@@ -193,6 +172,39 @@ form.onsubmit = () => {
 	return false;
 
 } 
+
+const buttonDone = (buttonR, unDone, buttonD) => {
+	const previousElement = buttonR.parentElement.previousElementSibling.textContent;
+	const s = document.createElement('s');
+	const pTag = document.createElement('p');
+	// unDone.style.display = "inline";
+
+	s.className = "s";
+	pTag.innerHTML = previousElement;
+	unDone.onclick = () => {
+		unDone.parentElement.previousElementSibling.replaceWith(pTag);
+		unDone.replaceWith(buttonD);
+	}
+
+	s.append(previousElement);
+	buttonD.parentElement.previousElementSibling.replaceWith(s);
+	buttonD.replaceWith(unDone);
+}
+
+const buttonArchive = (buttonA) => {
+	archive.append(buttonA.parentElement.parentElement);
+	const unArchive = document.createElement('button');
+
+	unArchive.className = 'un-archive button'
+	unArchive.innerHTML = 'UnArchive';
+
+	buttonA.replaceWith(unArchive);
+
+	unArchive.onclick = () => {
+		tasks.append(unArchive.parentElement.parentElement);
+		unArchive.replaceWith(buttonA)
+	}
+}
 
 setInterval(noTask, 100);
 

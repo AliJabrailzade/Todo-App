@@ -9,4 +9,4 @@ Advanced todo app features:
 - task replace history(Being able to see which tasks you replace)
 - Delete all tasks button
 
-You can check out the project [here](https://alijabrailzade.github.io/Todo-App/)
+You can check out the project [here](https://jabrailzadeali.github.io/Todo-App/)
