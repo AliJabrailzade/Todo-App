@@ -1,5 +1,4 @@
 # Advanced Todo App with javascript
-
 Advanced todo app features:
 - Being able to add tasks
 - Done and unDone button
@@ -8,5 +7,4 @@ Advanced todo app features:
 - Archive and unArchive tasks
 - task replace history(Being able to see which tasks you replace)
 - Delete all tasks button
-
 You can check out the project [here](https://jabrailzadeali.github.io/Todo-App/)
